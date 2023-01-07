@@ -47,7 +47,14 @@ down script := used to migrate schema to an older version
 
 ## Creating database
 
-```{bash}
+```sh
 docker exec -it postgres12 /bin/sh
 createdb --username=root --owner=root simple_bank
+```
+
+## Setting up migrations and dow
+
+```sh
+migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
+migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
 ```
